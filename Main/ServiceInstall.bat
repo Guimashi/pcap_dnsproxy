@@ -1,4 +1,10 @@
 @echo off
+if "%PROCESSOR_ARCHITECTURE%" == "AMD64" (set b = %SystemRoot%\SysWOW64) else (set b = %SystemRoot%\system32)
+rd "%b%\test_permissions" > nul 2 > nul
+md "%b%\test_permissions" 2 > nul || (echo Require Administrator Permission. && pause > nul && Exit)
+rd "%b%\test_permissions" > nul 2 > nul
+cd /d %~dp0
+cls
 
 :Type
 sc stop PcapDNSProxyService
